@@ -7,9 +7,10 @@ def Decidir(inimigo):
 
 def Atacar(inimigo,Eu):
     hit = randint["1,100"]
-    if hit >= (Eu["arma"].ins+inimigo["spd"]:
+    if hit >= (Eu["arma"].ins+inimigo["spd"]):
         Dmg = random.randint(Eu["arma"].pow) + Eu["atk"]
         inimigo["hp"] -= Dmg
+        #som da arma
         print("Você acertou!")
         if Dmg < 5:
             print("O golpe fez pouco efeito!")
@@ -25,6 +26,7 @@ def Atacar(inimigo,Eu):
             print("Uau! O inimigo sentiu isso!")
         return inimigo,Eu,0
     else:
+        #som de erro
         print("Você errou! Ha ha!")
         return inimigo,Eu,0
 
@@ -57,14 +59,26 @@ def Batalha(inimigo,Eu):
             cmd = input("O que você quer fazer?")
             if cmd not in comandos:
                 print("Esse não é um comando valido")
-        outcome = cmd(inimigo,Eu)
+        exec("outcome = ({}.title())(inimigo,Eu)".format(cmd))
         inimigo = outcome[0]
         Eu = outcome[1]
         fuga = outcome[2]
         if fuga == 1:
             break
-        out = inimigo["golpe"](inimigo,Eu)
+        exec("out = {}(inimigo,Eu)".format(inimigo["golpe"]))
         inimigo = out[0]
         Eu = out[1]
         Eu["defesa"] = False
+        if inimigo["hp"]/inimigo["mhp"] > 0.9:
+            print("{} ainda está em bom estado.".format(inimigo["nome"]))
+        if inimigo["hp"]/inimigo["mhp"] > 0.7:
+            print("{} está um pouco machucado.".format(inimigo["nome"]))
+        if inimigo["hp"]/inimigo["mhp"] > 0.5:
+            print("{} está começando a se cançar.".format(inimigo["nome"]))
+        if inimigo["hp"]/inimigo["mhp"] > 0.3:
+            print("{} está abalado.".format(inimigo["nome"]))
+        if inimigo["hp"]/inimigo["mhp"] > 0.1:
+            print("{} está ferido.".format(inimigo["nome"]))
+        else:
+            print("{} está perto da morte.".format(inimigo["nome"]))
     return
