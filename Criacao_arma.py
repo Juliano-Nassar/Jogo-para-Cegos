@@ -7,7 +7,7 @@ class Arma():
         tack = Mat[mat1["pow"]]+Mat[mat2["pow"]]+mat3["pow"]
         inst = Mat[mat1["ins"]] +Mat[mat2["ins"]] +Mat[mat3["inst"] ]
         self.attack = [tack-inst,tack+inst]
-        self.hit  = Mat[mat1["hit"]] + Mat[mat2["hit"]] + Mat[mat3["hit"]]
+        self.hit  = Mat[mat1["ins"]] + Mat[mat2["ins"]] + Mat[mat3["ins"]]
         self.peso = Mat[mat1["peso"]] + Mat[mat2["peso"]] + Mat[mat3["peso"]]
         #self.som = Mat[mat3["som"]]
         
