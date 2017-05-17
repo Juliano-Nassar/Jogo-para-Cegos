@@ -1,0 +1,11 @@
+{
+	"Ghuul":{
+		"nome" : "Ghuul",
+		"MHP" : 40,
+		"HP" : 40,
+		"atk" : [3,10],
+		"spd" : 4,
+		"Raridade" : "boss",
+		"LA" : ["mordida","agarrão"]
+	} 
+}
