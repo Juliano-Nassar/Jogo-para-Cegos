@@ -4,11 +4,11 @@ Mat = {"ferro":{"pow":5,"peso":6,"ins":4},"prata":{"pow":2,"peso":2,"ins":6},"ma
 #Classe de arma
 class Arma():
     def __init__(self,nome,mat1,mat2,mat3):
-        tack = Mat[mat1["pow"]]+Mat[mat2["pow"]]+mat3["pow"]
-        inst = Mat[mat1["ins"]] +Mat[mat2["ins"]] +Mat[mat3["inst"] ]
+        tack = Mat[mat1]["pow"]+Mat[mat2]["pow"]+Mat[mat3]["pow"]
+        inst = Mat[mat1]["ins"] +Mat[mat2]["ins"] +Mat[mat3]["ins"]
         self.attack = [tack-inst,tack+inst]
-        self.hit  = Mat[mat1["ins"]] + Mat[mat2["ins"]] + Mat[mat3["ins"]]
-        self.peso = Mat[mat1["peso"]] + Mat[mat2["peso"]] + Mat[mat3["peso"]]
+        self.hit  = inst
+        self.peso = Mat[mat1]["peso"] + Mat[mat2]["peso"] + Mat[mat3]["peso"]
         #self.som = Mat[mat3["som"]]
         
     def Dano():
