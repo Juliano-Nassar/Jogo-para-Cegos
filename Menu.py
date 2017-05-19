@@ -1,6 +1,8 @@
 import pygame
 from Voz import Falagg
 import Load
+import json
+import Criacao_arma as CA
    
 fala = """Olá, seja bem vindo, você esta no Menu do melhor jogo da sua vida, só que não,kkk, vamos começar:
     escreva a opção escolhida
@@ -26,25 +28,29 @@ if x == "iniciar":
     with open("Save.json", "r") as sav:
         Save = json.load(sav)
         if Save == {}:
-            Newgame()
+            Load.Newgame()
         else:
             Falagg("Se quiser começar um novo jogo escreva novo,se quiser continuar, escreva continuar")
             escreva = input("> ")
             if escreva == "novo":
-                Newgame()
+                Load.Newgame()
     Eu = Load.player()
-    while True
+    Eu["arma"]=CA.Arma(Eu["armad"][0],Eu["armad"][1],Eu["armad"][2],Eu["armad"][3])
+    while True:
         import Funcoes_Escolha as FE
         lista=["comeco","cavernaC_Direita","cavernaC_Esquerda"]
+        Eu["arma"]=CA.Arma(Eu["armad"][0],Eu["armad"][1],Eu["armad"][2],Eu["armad"][3])
         outcome = getattr(FE,lista[Load.place()])(Eu)
         Eu = outcome[0]
         pos = outcome[1]
         Falagg("""Você quer coninuar a jogar ou quer sair?
         Cuidado, seu jogo só sera salvo após escolhas""")
         opt = input("")
+        Load.Save(Eu,pos,{})
         if opt.lower() == "sim":
-            Load.Save(Eu,pos,{})
             break
+        
+        
     
     
     
