@@ -25,7 +25,7 @@ def Forja(Listamat):
     for n in ["cabo","guarda","lamina"]:
         a = "aaa"
         while a not in Listamat:
-            a = ("De que material será feita a {}".format(n))
+            a = input("De que material será feita a {}".format(n))
             if a not in Listamat:
                 print("Esse não é um material valido.")
         x.append(a)
