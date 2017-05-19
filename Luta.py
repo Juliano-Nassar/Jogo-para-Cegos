@@ -4,7 +4,7 @@ import Golpes
 import os
 
 def Decidir(inimigo):
-    qual = randint(1,len(inimigo["LA"])-1)
+    qual = randint(0,len(inimigo["LA"])-1)
     print("{0} está prestes a usar {1}!".format(inimigo["nome"],inimigo["LA"][qual]))
     return inimigo["LA"][qual]
 
@@ -13,10 +13,10 @@ def Atacar(inimigo,Eu):
     if hit >= (Eu["arma"].hit+inimigo["spd"]):
         Dmg = randint((Eu["arma"].attack)[0],(Eu["arma"].attack)[1]) + Eu["atk"]
         inimigo["hp"] -= Dmg
-        sleep(3)
+        sleep(2)
         #som da arma
         print("Você acertou!")
-        sleep(3)
+        sleep(2)
         if Dmg < 5:
             print("O golpe fez pouco efeito!")
         elif Dmg < 10:
@@ -29,18 +29,20 @@ def Atacar(inimigo,Eu):
             print("Um acerto poderoso!")
         else:
             print("Uau! O inimigo sentiu isso!")
+        sleep(3)
         return inimigo,Eu,0
     else:
         #som de erro
-        sleep(2)
+        sleep(1)
         print("Você errou! Ha ha!")
+        sleep(2)
         return inimigo,Eu,0
 
 def Defender(inimigo,Eu):
     Eu["defesa"] = True
     print("Você se defendeu!")
     sleep(1)
-    return inimigo,Eu,1
+    return inimigo,Eu,0
 
 def Fugir(inimigo,Eu):
     if inimigo["Raridade"] =="boss":
@@ -51,9 +53,11 @@ def Fugir(inimigo,Eu):
     sleep(3)
     if x <= chance:
         print("Você fugiu!")
+        sleep(2)
         return inimigo,Eu,1
     else:
         print("Você não conseguiu fugir!")
+        sleep(2)
         return inimigo,Eu,0
     
 def Especial(inimigo,Eu):
