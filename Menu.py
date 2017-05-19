@@ -1,6 +1,7 @@
 import pygame
 from Voz import Falagg
-    
+import Load
+   
 fala = """Olá, seja bem vindo, você esta no Menu do melhor jogo da sua vida, só que não,kkk, vamos começar:
     escreva a opção escolhida
     se você quiser iniciar o jogo
@@ -21,7 +22,31 @@ while True:
         fala = """Comando inválido, tente mais uma vez"""
         Falagg(fala)
 if x == "iniciar":
-    import Funcoes_Escolha as FE
+    
+    with open("Save.json", "r") as sav:
+        Save = json.load(sav)
+        if Save == {}:
+            Newgame()
+        else:
+            Falagg("Se quiser começar um novo jogo escreva novo,se quiser continuar, escreva continuar")
+            escreva = input("> ")
+            if escreva == "novo":
+                Newgame()
+    Eu = Load.player()
+    while True
+        import Funcoes_Escolha as FE
+        lista=["comeco","cavernaC_Direita","cavernaC_Esquerda"]
+        outcome = getattr(FE,lista[Load.place()])(Eu)
+        Eu = outcome[0]
+        pos = outcome[1]
+        Falagg("""Você quer coninuar a jogar ou quer sair?
+        Cuidado, seu jogo só sera salvo após escolhas""")
+        opt = input("")
+        if opt.lower() == "sim":
+            Load.Save(Eu,pos,{})
+            break
+    
+    
     
     
 elif x == "fechar":
