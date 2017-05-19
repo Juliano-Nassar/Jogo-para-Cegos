@@ -12,6 +12,7 @@ class Arma():
         self.mat1 = mat1
         self.mat2 = mat2
         self.mat3 = mat3
+        self.nome = nome
         #self.som = Mat[mat3["som"]]
         
     def Dano():
