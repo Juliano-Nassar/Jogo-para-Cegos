@@ -9,6 +9,9 @@ class Arma():
         self.attack = [tack-inst,tack+inst]
         self.hit  = inst
         self.peso = Mat[mat1]["peso"] + Mat[mat2]["peso"] + Mat[mat3]["peso"]
+        self.mat1 = mat1
+        self.mat2 = mat2
+        self.mat3 = mat3
         #self.som = Mat[mat3["som"]]
         
     def Dano():
