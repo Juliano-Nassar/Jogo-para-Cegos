@@ -1,6 +1,9 @@
 import pygame
 from Voz import Falagg
-def comeco():
+import Criacao_arma as CA
+import Luta as L
+import Load
+def comeco(Eu):
     Falagg("""O barulho do cavalo cavalgando aumenta em quanto você corre daquele misterioso guerreiro
     no meio de toda essa confusão, uma correnteza de ar começa a ir á direita, com certeza isso deve ser uma caverna
     percebendo a oportunidade, você corre nesta direção e encosta nas paredes até encontrar uma entrada
@@ -21,11 +24,21 @@ def comeco():
             ,fechando o portão e salvando-o do perigo,porem cai no chão, desmaiando""")
         else:
             Falagg("Comando inválido, tente mais uma vez")
-        return
+        return Forja1(Eu)#[Eu,0]
+def Forja1(Eu):
+    Falagg("""Você acorda, não se sabe quanto tempo passou, e você não escuta mais a floresta
+    Você não sabe exatamente onde está e começa a procurar algo por perto, você tropeça e toca em um local do solo menos elevado
+    será uma escada?
+    em quanto você tenta descer com calma, sua mão esbarra em um corrimão,que estranho, que lugar é esse?
+    você continua desccendo, parece uma escada sem fim.
+    após algum tempo você chega no final e sente um calor escaldante, parabéns, encontrou sua primeira forja
+    agora você podera criar uma arma""")
+    Eu["arma"]= CA.Forja(["madeira","ferro","prata"])
+    Falagg("""Você obteve {}, essa é sua primeira arma, cuide bem dela pois ela cuidara de você""".format(Eu["arma"].nome))
+    return cavernaC(Eu)#[Eu,0]
     
-def cavernaC():
-    Falagg("""Após algum tempo desmaiado,você se levanta e começa a tocar em tudo que está a sua volta
-    você não escuta mais o lado de fora,consegue encontrar duas paredes por perto,você decide:
+def cavernaC(Eu):
+    Falagg("""Saindo da forja,você  encontra duas paredes por perto,você decide:
         se quiser seguir a parede indo pela direita,
         digite direita
         se quiser seguir pela esquerda
@@ -33,11 +46,31 @@ def cavernaC():
     while True:
         escolha = input(">")
         if escolha == "direita":
-            return 0
+            print("Você foi para a direita")
+            return [Eu,1]
         elif escolha == "esquerda":
-            return 1
+            print("Você foi para a esquerda")
+            return [Eu,2]
         else:
             Falagg("Comando inválido, tente mais uma vez")
     
-        
     
+
+def cavernaC_Direita(Eu):
+    Falagg("Você segue a parede por alguns metros.")
+    Encontro(Eu)
+    return Encontro(Eu)
+    
+def cavernaC_Esquerda(Eu):
+    Falagg(("Você segue a parede por alguns metros e escuta uma borboleta."))
+    
+    return Encontro(Eu)
+    
+def Encontro(Eu):
+    Falagg("""Você escuta um barulho estranho.
+    o som das rapidas passadas aumentam, algo está correndo em sua direção
+    Se prepare essa será sua primeira batalha
+    Você está de frente com um ghuul, um ser místico que habita corpos mortos 
+    Boa sorte!!""")
+    L.Batalha(Load.enemy("Ghuul"),Eu)
+    return[Eu,3]
